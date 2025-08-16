@@ -8,79 +8,96 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Luminae - Fashion Store</title>
-    <link rel="stylesheet" href="css/home.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/home.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 <!-- Header -->
-<header class="header">
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container">
-            <span>Free shipping on all orders above $75</span>
-            <div class="top-links">
-                <span>Help & Support</span>
-                <span>English</span>
+    <!-- start nav bar -->
+    <nav>
+        <div class="menue-icon">
+            <img src="image/login-images/Menue icon.svg" alt="">
+        </div>
+        <div class="left-section">
+            <div class="logo-section">
+                <div class="logo-img">
+                    <img src="image/login-images/Logo.svg" alt="">
+                </div>
+                <h2>Luminae</h2>
+            </div>
+            <div class="search-section">
+                <form action="" >
+                    <input type="text" name="" placeholder="Search Prodcuts">
+                    <select name="" id="">
+                        <option value="">All Categories</option>
+                    </select>
+                    <div class="search-icon">
+                        <img src="image/login-images/Search.svg" alt="">
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
 
-    <!-- Main Header -->
-    <div class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <!-- Logo -->
-                <div class="logo">
-                    <span><img src="image/login-images/Logo.svg"> Luminae</span>
-                </div>
-
-                <!-- Search Bar -->
-                <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" placeholder="Search products..." class="search-input">
-                </div>
-
-                <!-- Action Icons -->
-                <div class="action-icons">
-                    <button class="icon-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <button class="icon-btn">
-                        <i class="fas fa-heart"></i>
-                        <span class="badge">2</span>
-                    </button>
-                    <button class="icon-btn">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge badge-blue">3</span>
-                    </button>
-                    <button class="icon-btn">
-                        <i class="fas fa-user"></i>
-                    </button>
-                </div>
+        <div class="right-section">
+            <div class="links-nav">
+                <ul>
+                    <li><a href="test.html">About us</a></li>
+                    <li>Blog</li>
+                    <li>Contact us</li>
+                    <li>Help& support</li>
+                </ul>
+            </div>
+            <div class="social-nav">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-telegram"></i>
             </div>
         </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navigation">
-        <div class="container">
-            <div class="nav-content">
-                <div class="nav-categories">All Categories</div>
-                <a href="#" class="nav-link">Fashion</a>
-                <a href="#" class="nav-link">Kids</a>
-                <a href="#" class="nav-link">Summer Outfit</a>
-                <a href="#" class="nav-link">Home & Fashion</a>
-                <a href="#" class="nav-link">Super market</a>
-                <a href="#" class="nav-link">Cosmetics</a>
-                <a href="#" class="nav-link">Book & Gift</a>
-                <a href="#" class="nav-link">Electronics</a>
-                <a href="#" class="nav-link">Sports & Outdoor</a>
-                <a href="#" class="nav-link nav-sale">Best Sale</a>
+        <div class="shopIcon-section">
+            <div class="shop-icon">
+                <img src="image/login-images/Cards.svg" alt="">
+            </div>
+            <div class="shop-quantity">
+                <h3>3</h3>
             </div>
         </div>
     </nav>
-</header>
+    <!-- end nav bar -->
 
+    <!-- start bottom nav bar -->
+    <section class="bottom-nav">
+        <div class="categories">
+            <img src="image/login-images/categories.svg" alt="" style="width: 40px;">
+            <h2>Categories</h2>
+        </div>
+        <div class="selection">
+            <select name="" >
+                <option >USD</option>
+            </select>
+            <select name="" >
+                <option >English</option>
+            </select>
+        </div>
+        <div class="pages">
+            <div>
+                <img src="image/login-images/Sign in.svg" alt="">
+                <h4>Sign in</h4>
+            </div>
+            <div>
+                <img src="image/login-images/Sign in.svg" alt="">
+                <h4>Favorites</h4>
+            </div>
+            <div class="shopIcon-section">
+                <img src="image/login-images/Card.svg" alt="">
+                <h4>Cart</h4>
+                <div class="shop-quantity">
+                    <h4>3</h4>
+                </div>
+        </div>
+        </div>
+    </section>
+    <!--end  bottom nav bar -->
 <!-- Hero Section -->
 <section class="hero">
     <div class="container">
@@ -493,90 +510,59 @@
     </div>
 </section>
 
-<!-- Footer -->
-<footer class="footer">
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container">
-            <h3>Luminae Store</h3>
-            <p>Register your email, and we will always have promotions for you. We offer fast delivery and all products are in stock.</p>
-            <div class="newsletter-form">
-                <div class="input-container">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" placeholder="Enter your email">
-                </div>
-                <button class="subscribe-btn">Subscribe</button>
-            </div>
+    <!-- start Footer -->
+    <footer>
+        <div class="top-footer">
+            <ul>
+                <li><h3>Company</h3></li>
+                <li>About Us</li>
+                <li>Our Store</li>
+                <li>Contacts Us</li>
+            </ul>
+            <ul>
+                <li><h3>Career Opportunities</h3></li>
+                <li>Selling Programs</li>
+                <li>Advertise</li>
+                <li>Cooperation</li>
+            </ul>
+            <ul>
+                <li><h3>How to Buy</h3></li>
+                <li>Making Payments</li>
+                <li>Delivery Options</li>
+                <li>Buyer Protection</li>
+                <li>New User Guide</li>
+            </ul>
+            <ul>
+                <li><h3>Help</h3></li>
+                <li>Contacts Us</li>
+                <li>FAQ</li>
+                <li>Privacy Policy</li>
+            </ul>
         </div>
-    </section>
-
-    <!-- Main Footer -->
-    <div class="footer-main">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Creatives</a></li>
-                    </ul>
+        <div class="bottom-footer">
+            <div class="payment-secctoin">
+                <div>
+                    <img src="image/login-images/image-112.svg" alt="">
+                    <img src="image/login-images/image-113.svg" alt="">
+                    <img src="image/login-images/login-images/image-114.svg" alt="">
                 </div>
-
-                <div class="footer-column">
-                    <h4>Career Opportunities</h4>
-                    <ul>
-                        <li><a href="#">Selling Programs</a></li>
-                        <li><a href="#">Advertise</a></li>
-                        <li><a href="#">Cooperation</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4>How to Buy</h4>
-                    <ul>
-                        <li><a href="#">Making Payments</a></li>
-                        <li><a href="#">Delivery Options</a></li>
-                        <li><a href="#">Buyer Protection</a></li>
-                        <li><a href="#">New User Zone</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h4>Help</h4>
-                    <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
+                <select name="" id="">
+                    <option value="">English</option>
+                </select>
+            </div>
+            <span class="line"></span>
+            <div class="copyright">
+                <h3>165-179 Forster Road City of Monash, Melbourne, Australia</h3>
+                <p>©2023 Copyright in reserved for lumine shop</p>
+                <div class="social-icons">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-telegram"></i>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Bottom Footer -->
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="footer-bottom-content">
-                <div class="payment-methods">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="American Express">
-                </div>
-
-                <div class="copyright">
-                    <p>©2024 Luminae Store | All Rights Reserved | Luminae, Melbourne, Australia</p>
-                </div>
-
-                <div class="language">
-                    <span>English</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
+    </footer>
+    <!-- end Footer -->
 <script src="js/home.js"></script>
 </body>
 </html>

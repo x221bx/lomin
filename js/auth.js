@@ -49,6 +49,7 @@ export const handelGoogleSignUp = async ()=> {
             orders: [],
             orderStatus: false,
             completedOrders: [],
+            cart:[],
         });
     }
     return result ;
@@ -68,6 +69,7 @@ export const handelSignUp = async (email , password) => {
         orders : [],
         orderStatus:false,
         completedOrders:[],
+        cart:[],
     })
     return cred
 }
@@ -87,6 +89,7 @@ export const handelGooglelogin = async ()=> {
             orders: [],
             orderStatus: false,
             completedOrders: [],
+            cart:[],
         })
     }
     return result;
