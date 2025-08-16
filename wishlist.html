@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <link rel="stylesheet" href="./css/products-wishlist.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- start nav bar -->
+    <nav>
+        <div class="menue-icon">
+            <img src="image/login-images/Menue icon.svg" alt="">
+        </div>
+        <div class="left-section">
+            <div class="logo-section">
+                <div class="logo-img">
+                    <img src="image/login-images/Logo.svg" alt="">
+                </div>
+                <h2>Luminae</h2>
+            </div>
+            <div class="search-section">
+                <form action="">
+                    <input type="text" name="" placeholder="Search Prodcuts">
+                    <select name="" id="">
+                        <option value="">All Categories</option>
+                    </select>
+                    <div class="search-icon">
+                        <img src="image/login-images/Search.svg" alt="">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="links-nav">
+                <ul>
+                    <li><a href="test.html">About us</a></li>
+                    <li>Blog</li>
+                    <li>Contact us</li>
+                    <li>Help& support</li>
+                </ul>
+            </div>
+            <div class="social-nav">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-telegram"></i>
+            </div>
+        </div>
+        <div class="shopIcon-section">
+            <div class="shop-icon">
+                <img src="image/login-images/Cards.svg" alt="">
+            </div>
+            <div class="shop-quantity">
+                <h3>3</h3>
+            </div>
+        </div>
+    </nav>
+    <!-- end nav bar -->
+
+    <!-- start bottom nav bar -->
+    <section class="bottom-nav">
+        <div class="categories">
+            <img src="image/login-images/categories.svg" alt="" style="width: 40px;">
+            <h2>Categories</h2>
+        </div>
+        <div class="selection">
+            <select name="">
+                <option>USD</option>
+            </select>
+            <select name="">
+                <option>English</option>
+            </select>
+        </div>
+        <div class="pages">
+            <div>
+                <img src="image/login-images/Sign in.svg" alt="">
+                <h4>Sign in</h4>
+            </div>
+            <div>
+                <img src="image/login-images/Sign in.svg" alt="">
+                <h4>Favorites</h4>
+            </div>
+            <div class="shopIcon-section">
+                <img src="image/login-images/Card.svg" alt="">
+                <h4>Cart</h4>
+                <div class="shop-quantity">
+                    <h4>3</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--end  bottom nav bar -->
+
+    <!-- start main -->
+    <main>
+        <h2 style="text-align: center; padding: 2%;"><i class="fa-solid fa-heart" style="color: red;"></i> My favorite
+            products <i class="fa-solid fa-heart" style="color: red;"></i></h2>
+        <div id="fav-container" class="products"></div>
+    </main>
+    <!-- end main -->
+
+    <!-- start Footer -->
+    <footer>
+        <div class="top-footer">
+            <ul>
+                <li>
+                    <h3>Company</h3>
+                </li>
+                <li>About Us</li>
+                <li>Our Store</li>
+                <li>Contacts Us</li>
+            </ul>
+            <ul>
+                <li>
+                    <h3>Career Opportunities</h3>
+                </li>
+                <li>Selling Programs</li>
+                <li>Advertise</li>
+                <li>Cooperation</li>
+            </ul>
+            <ul>
+                <li>
+                    <h3>How to Buy</h3>
+                </li>
+                <li>Making Payments</li>
+                <li>Delivery Options</li>
+                <li>Buyer Protection</li>
+                <li>New User Guide</li>
+            </ul>
+            <ul>
+                <li>
+                    <h3>Help</h3>
+                </li>
+                <li>Contacts Us</li>
+                <li>FAQ</li>
+                <li>Privacy Policy</li>
+            </ul>
+        </div>
+        <div class="bottom-footer">
+            <div class="payment-secctoin">
+                <div>
+                    <img src="image/login-images/image-112.svg" alt="">
+                    <img src="image/login-images/image-113.svg" alt="">
+                    <img src="image/login-images/login-images/image-114.svg" alt="">
+                </div>
+                <select name="" id="">
+                    <option value="">English</option>
+                </select>
+            </div>
+            <span class="line"></span>
+            <div class="copyright">
+                <h3>165-179 Forster Road City of Monash, Melbourne, Australia</h3>
+                <p>©2023 Copyright in reserved for lumine shop</p>
+                <div class="social-icons">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="" src="js/products.js"></script>
+    <script>
+        const favContainer = document.getElementById('fav-container');
+
+        function renderFavorites() {
+            favContainer.innerHTML = '';
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+            if (favorites.length === 0) {
+                favContainer.innerHTML = '<p>There is no favorite products!</p>';
+                return;
+            }
+
+            favorites.forEach((product) => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                const discountRate = 0.20; // 20% discount
+                const oldPrice = (product.price / (1 - discountRate)).toFixed(2);
+
+                card.innerHTML = `
+        <a href="#" class="see-more">
+        <img src="${product.image}" alt="${product.title}">
+        <div class="card-content">
+        <h3>${product.title.split(" ").slice(0, 4).join(" ")}</h3>
+        <p>${product.category}</p>
+        </a>
+        
+        <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <span>(526)</span>
+        </div>
+
+        <div class="price">
+        <span class="new">$${product.price}</span>
+        <span class="old">$${oldPrice}</span>
+        <span class="discount">-${discountRate * 100}%</span>
+        </div>
+        <div class="actions">
+        <span class="heart-like" title="${isFavorite(product.id) ? 'Remove from favorite' : 'Add to favorite'}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 
+               2 8.5 2 5.42 4.42 3 7.5 3 
+               c1.74 0 3.41 0.81 4.5 2.09 
+               C13.09 3.81 14.76 3 16.5 3 
+               C19.58 3 22 5.42 22 8.5 
+               c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+            fill="${isFavorite(product.id) ? 'red' : 'none'}" 
+            stroke="${isFavorite(product.id) ? 'red' : 'black'}" 
+            stroke-width="2"/>
+        </svg>
+        </span>
+        <i class="fas fa-shopping-cart add-btn"></i>
+      </div>
+    </div>
+  </div>
+            `;
+
+                // open details page on a new tab
+                card.querySelector('.see-more').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.open(`detailsPage.html?id=${product.id}`, '_blank');
+                });
+
+                // add to cart
+                card.querySelector('.add-btn').addEventListener('click', () => {
+                    addToCart(product);
+                });
+
+                // add or remove from fav
+                card.querySelector('.heart-like').addEventListener('click', () => {
+                    let heartPath = card.querySelector('svg path');
+                    let heartContainer = card.querySelector('.heart-like');
+                    toggleFavorite(product, heartPath, heartContainer, renderFavorites);
+                });
+
+
+                favContainer.appendChild(card);
+            });
+        }
+
+        renderFavorites();
+    </script>
+
+</body>
+
+</html>

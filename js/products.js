@@ -1,0 +1,194 @@
+let allProducts = [];
+let filteredProducts = [];
+let searchedProducts = [];
+
+// display products
+function displayProducts(products) {
+    const container = document.getElementById('products-container');
+    container.innerHTML = '';
+
+    products.forEach(product => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        const discountRate = 0.20; // 20% discount fixed
+        const oldPrice = (product.price / (1 - discountRate)).toFixed(2);
+
+        card.innerHTML = `
+        <a href="#" class="see-more">
+        <img src="${product.image}" alt="${product.title}">
+        <div class="card-content">
+        <h3>${product.title.split(" ").slice(0, 2).join(" ")}</h3>
+        <p>${product.category}</p>
+        </a>
+        
+        <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <span>(526)</span>
+        </div>
+
+        <div class="price">
+        <span class="new">$${product.price}</span>
+        <span class="old">$${oldPrice}</span>
+        <span class="discount">-${discountRate * 100}%</span>
+        </div>
+        <div class="actions">
+        <span class="heart-like" title="${isFavorite(product.id) ? 'Remove from favorite' : 'Add to favorite'}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 
+               2 8.5 2 5.42 4.42 3 7.5 3 
+               c1.74 0 3.41 0.81 4.5 2.09 
+               C13.09 3.81 14.76 3 16.5 3 
+               C19.58 3 22 5.42 22 8.5 
+               c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+            fill="${isFavorite(product.id) ? 'red' : 'none'}" 
+            stroke="${isFavorite(product.id) ? 'red' : 'black'}" 
+            stroke-width="2"/>
+        </svg>
+        </span>
+        <i class="fas fa-shopping-cart add-btn"></i>
+      </div>
+    </div>
+      </div>
+        `;
+
+        // add to cart
+        card.querySelector('.add-btn').addEventListener('click', () => addToCart(product));
+
+        // add to fav
+        card.querySelector('.heart-like').addEventListener('click', () => {
+            let heartPath = card.querySelector('svg path');
+            let heartContainer = card.querySelector('.heart-like');
+            toggleFavorite(product, heartPath, heartContainer);
+        });
+
+
+        // open product details page
+        card.querySelector('.see-more').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open(`detailsPage.html?id=${product.id}`, '_blank');
+        });
+
+        container.appendChild(card);
+    });
+}
+
+// fetch data from API
+fetch('https://fakestoreapi.com/products')
+    .then(res => res.json())
+    .then(products => {
+        allProducts = products;
+        filteredProducts = [...allProducts];
+        searchedProducts = [...allProducts];
+        displayProducts(allProducts);
+    });
+
+// Apply all filters , search , sort 
+function applyAllFilters() {
+    // filter with category & price
+    let selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(c => c.value);
+    let minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+    let maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+
+    filteredProducts = allProducts.filter(product => {
+        let categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(product.category);
+        let priceMatch = product.price >= minPrice && product.price <= maxPrice;
+        return categoryMatch && priceMatch;
+    });
+
+    // search
+    let char = document.getElementById('search').value.toLowerCase();
+    searchedProducts = filteredProducts.filter(product =>
+        product.title.toLowerCase().includes(char) ||
+        product.description.toLowerCase().includes(char) ||
+        product.category.toLowerCase().includes(char)
+    );
+
+    // sort => price
+    let selectedSort = document.getElementById('select').value;
+    if (selectedSort === 'lowToHigh') {
+        searchedProducts.sort((a, b) => a.price - b.price);
+    } else if (selectedSort === 'highToLow') {
+        searchedProducts.sort((a, b) => b.price - a.price);
+    }
+
+    displayProducts(searchedProducts);
+}
+
+// events
+document.getElementById('apply-filters').addEventListener('click', applyAllFilters);
+document.getElementById('search').addEventListener('input', applyAllFilters);
+document.getElementById('select').addEventListener('change', applyAllFilters);
+
+// reset button in sidebar
+document.getElementById('reset-filters').addEventListener('click', () => {
+    document.querySelectorAll('.category-filter').forEach(input => input.checked = false);
+    document.getElementById('min-price').value = '';
+    document.getElementById('max-price').value = '';
+    document.getElementById('search').value = '';
+    document.getElementById('select').value = 'default';
+    filteredProducts = [...allProducts];
+    searchedProducts = [...allProducts];
+    displayProducts(allProducts);
+});
+
+// Sidebar in small screen
+const filterBtn = document.getElementById('filterBtn');
+const sideBar = document.getElementById('sideBar');
+const applyBtn = document.getElementById('apply-filters');
+
+filterBtn.addEventListener('click', () => {
+    const isHidden = getComputedStyle(sideBar).display === 'none';
+    sideBar.style.display = isHidden ? 'block' : 'none';
+    filterBtn.textContent = isHidden ? 'Hide Filters' : 'Show Filters';
+});
+
+applyBtn.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+        sideBar.style.display = 'none';
+        filterBtn.textContent = 'Show Filters';
+    }
+});
+
+// add to cart
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${product.title} added to cart!`);
+}
+
+
+// add to fav
+function toggleFavorite(product, heartPath, heartContainer, refreshCallback) {
+    let favs = JSON.parse(localStorage.getItem('favorites')) || [];
+    let index = favs.findIndex(p => p.id === product.id);
+
+    if (index === -1) {
+        favs.push(product);
+        localStorage.setItem('favorites', JSON.stringify(favs));
+        heartPath.setAttribute('fill', 'red');
+        heartPath.setAttribute('stroke', 'red');
+        heartContainer.setAttribute('title', 'Remove from Favorites');
+    } else {
+        favs.splice(index, 1);
+        localStorage.setItem('favorites', JSON.stringify(favs));
+        heartPath.setAttribute('fill', 'none');
+        heartPath.setAttribute('stroke', 'black');
+        heartContainer.setAttribute('title', 'Add to Favorites');
+    }
+
+    // if in wishlist page => refresh immediately
+    if (typeof refreshCallback === "function") {
+        refreshCallback();
+    }
+}
+
+
+function isFavorite(productId) {
+    let favs = JSON.parse(localStorage.getItem('favorites')) || [];
+    return favs.some(p => p.id === productId);
+}
