@@ -15,6 +15,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
 
 // Firebase Config
 const firebaseConfig = {
@@ -25,6 +27,7 @@ const firebaseConfig = {
   messagingSenderId: "942681838440",
   appId: "1:942681838440:web:71c531f5df867b6941fcdd",
   measurementId: "G-WJLB73W1HY",
+  databaseURL: "https://js-project-48e11-default-rtdb.firebaseio.com",
 };
 
 // Initialize Firebase
@@ -33,3 +36,5 @@ const app = initializeApp(firebaseConfig);
 // Export services
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const realtimeDB = getDatabase(app);
+export { ref, onValue };

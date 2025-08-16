@@ -1,3 +1,5 @@
+import { realtimeDB, ref, onValue } from "./firebase-config.js";
+
 let allProducts = [];
 let filteredProducts = [];
 let searchedProducts = [];
@@ -15,9 +17,9 @@ function displayProducts(products) {
 
         card.innerHTML = `
         <a href="#" class="see-more">
-        <img src="${product.image}" alt="${product.title}">
+        <img src="${product.image}" alt="${product.name}">
         <div class="card-content">
-        <h3>${product.title.split(" ").slice(0, 2).join(" ")}</h3>
+        <h3>${product.name}</h3>
         <p>${product.category}</p>
         </a>
         
@@ -76,15 +78,28 @@ function displayProducts(products) {
     });
 }
 
-// fetch data from API
-fetch('https://fakestoreapi.com/products')
-    .then(res => res.json())
-    .then(products => {
+// fetch data from firebase
+function loadProducts() {
+    const productsRef = ref(realtimeDB, "products"); 
+
+    onValue(productsRef, (snapshot) => {
+        const data = snapshot.val();
+        if (!data) return;
+
+        // نحول object إلى array
+        const products = Object.keys(data).map(id => ({
+            id,
+            ...data[id]
+        }));
+
         allProducts = products;
         filteredProducts = [...allProducts];
         searchedProducts = [...allProducts];
         displayProducts(allProducts);
     });
+}
+
+loadProducts();
 
 // Apply all filters , search , sort 
 function applyAllFilters() {
