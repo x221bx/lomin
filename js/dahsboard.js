@@ -12,7 +12,7 @@
     realtimeDB,
     } from "./firebase-config.js";
 
-    const productRef = ref(rtdb, "products");
+    const productRef = ref(realtimeDB, "products");
     const newProducts = push(productRef);
     let currentEditId = null;
 
@@ -30,6 +30,10 @@
     console.log(saveBtn);
 
 
+
+
+
+
     // ==== creat product function  => this fun check in fields and create product in db (realtime database) and clear the inputs after adding 
     function createProduct() {
     if (!nameInput.value || !priceInput.value || !categoryInput.value) {
@@ -38,9 +42,9 @@
     }
     let productRefToUse;
     if (currentEditId) {
-        productRefToUse = ref(rtdb, `products/${currentEditId}`)
+        productRefToUse = ref(realtimeDB, `products/${currentEditId}`)
     }else {
-        const productRef = ref(rtdb, "products");
+        const productRef = ref(realtimeDB, "products");
         productRefToUse = push(productRef);
     }
     set(productRefToUse, {
@@ -96,7 +100,7 @@
 
     // delete product 
     window.deleteProduct = function(id) {
-        const productRef =ref(rtdb, `products/${id}`)
+        const productRef =ref(realtimeDB, `products/${id}`)
         remove(productRef)
         .then(()=> {
             alert('deleted Succssifully')
@@ -109,7 +113,7 @@
 
 window.editeProduct = function(id) {
         currentEditId = id;
-        const productRef =ref(rtdb, `products/${id}`)
+        const productRef =ref(realtimeDB, `products/${id}`)
         
         onValue(productRef, (snapshot) => {
             const product = snapshot.val();
@@ -167,4 +171,30 @@ window.editeProduct = function(id) {
                 <button class="action reject">Reject</button>
                 </td>
             </tr>
-            `;
+`;
+
+
+
+
+
+
+function testAddingOrders() {
+    const orderId = "user2222_" + Date.now();
+    const orderRef = ref(realtimeDB, "orders/"+orderId);
+
+    set(orderRef, {
+            userId :'user2222',
+            items: [
+                {productId:'product1', name :'product A', price:200,quantity:2},
+                {productId:'product2', name :'product b', price:300,quantity:1}
+            ],
+            total :500,
+            staus : 'rejected',
+            date:new Date().toLocaleString(),
+        
+    })
+} 
+
+
+testAddingOrders()
+
