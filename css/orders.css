@@ -1,0 +1,103 @@
+.order-section {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 40px 20px;
+  background: #f9f9f9;
+}
+
+.order-section h1 {
+  font-size: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.order-section .orders {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.order-section .order {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin: 10px 0;
+  transition: transform 0.2s ease;
+  gap: 20px;
+}
+
+.order-section .order:hover {
+  transform: translateY(-3px);
+}
+
+.order-section .order img {
+  width: 100px;
+  border-radius: 8px;
+}
+
+.order-status {
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+/* ======  order status ===== */
+.order-status.pending {
+  background-color: rgb(213, 191, 25);
+}
+.order-status.confirmed {
+  background-color: rgb(103, 198, 35);
+}
+.order-status.delivered {
+  background-color: rgb(0, 123, 255);
+}
+.order-status.cancelled {
+  background-color: rgb(200, 50, 50);
+}
+
+@media (max-width: 768px) {
+  .order-section h1 {
+    font-size: 28px;
+  }
+
+  .order-section .order {
+    flex-direction: row; /* يفضلوا جنب بعض */
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .order-section .order img {
+    width: 60px;  /* صورة أصغر */
+  }
+
+  .order-section .order h3 {
+    font-size: 16px; /* تصغير الخط */
+  }
+
+  .order-section .order h4 {
+    font-size: 14px; 
+  }
+
+  .order-status {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
