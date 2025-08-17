@@ -1,7 +1,13 @@
-import { realtimeDB, ref, onValue, auth } from "./firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-import { db } from "./firebase-config.js";
-import { doc, updateDoc, getDoc, onSnapshot, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { 
+  db,
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+  arrayUnion,
+  getDoc
+} from "./firebase-config.js";
+
 
 let allProducts = [];
 let filteredProducts = [];
@@ -185,13 +191,22 @@ applyBtn.addEventListener('click', () => {
 });
 
 // add to cart
-function addToCart(product) {
-    if (!currentUser) {
-        alert("Please log in first!");
-        return;
-    }
 
-    
+async function addToCart(product) {
+
+    let productDetals = {
+        id:product.id,
+        name:product.name,
+        price:product.price,
+        quantity: 1,
+        createdAt: new Date()
+    }
+    const userId = auth.currentUser.uid; 
+    const userDocRef = doc(db, 'users', userId);
+    await updateDoc(userDocRef, {
+        cart:arrayUnion(productDetals)
+    })
+
 }
 
 // add to wishlist
