@@ -4,21 +4,37 @@
 // you might need across the project.
 // ===========================================================
 
-// Firebase SDK imports
+// Firebase core
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
 // Authentication
 import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
 // Firestore (NoSQL database)
-import { getFirestore , collection, addDoc ,doc ,updateDoc ,arrayUnion ,getDoc} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-// Firebase Realtime Database
-import { getDatabase, ref, set, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  doc, 
+  updateDoc, 
+  arrayUnion, 
+  getDoc, 
+  getDocs, 
+  query, 
+  where 
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
+// Realtime Database (لو محتاجه)
+import { 
+  getDatabase, 
+  ref, 
+  set, 
+  push, 
+  onValue, 
+  update, 
+  remove 
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
 
-// Storage (for uploading images, files)
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
-// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyAfO9XcMri6m9GOrI9QmOtuxLrwRv4Z9HA",
   authDomain: "js-project-48e11.firebaseapp.com",
@@ -41,4 +57,7 @@ export const realtimeDB = getDatabase(app);
 export const storage = getStorage(app);
 
 // Export Realtime Database helpers (optional, for convenience)
+
+
 export { ref, set, push, onValue, update, remove, storageRef, uploadBytes, getDownloadURL , collection, addDoc ,doc ,updateDoc ,arrayUnion ,getDoc};
+

@@ -1,8 +1,27 @@
-import { realtimeDB, ref, onValue, auth, push ,db, collection, addDoc ,doc ,updateDoc ,arrayUnion ,getDoc} from "./firebase-config.js";
+import { 
+  db,
+  collection,
+  addDoc,
+  doc,
+  updateDoc,
+  arrayUnion,
+  getDoc
+} from "./firebase-config.js";
+
 
 let allProducts = [];
 let filteredProducts = [];
 let searchedProducts = [];
+
+let currentUser = null;
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        currentUser = user.uid;
+    } else {
+        currentUser = null;
+    }
+});
 
 // display products
 function displayProducts(products) {
@@ -19,7 +38,7 @@ function displayProducts(products) {
         <a href="#" class="see-more">
         <img src="${product.image}" alt="${product.name}">
         <div class="card-content">
-        <h3>${product.name}</h3>
+        <h3>${product.name.split(" ").slice(0, 2).join(" ")}</h3>
         <p>${product.category}</p>
         </a>
         
@@ -38,7 +57,7 @@ function displayProducts(products) {
         <span class="discount">-${discountRate * 100}%</span>
         </div>
         <div class="actions">
-        <span class="heart-like" title="${isFavorite(product.id) ? 'Remove from favorite' : 'Add to favorite'}">
+        <span class="heart-like" title="Add to favorite">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 
                2 8.5 2 5.42 4.42 3 7.5 3 
@@ -46,12 +65,12 @@ function displayProducts(products) {
                C13.09 3.81 14.76 3 16.5 3 
                C19.58 3 22 5.42 22 8.5 
                c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-            fill="${isFavorite(product.id) ? 'red' : 'none'}" 
-            stroke="${isFavorite(product.id) ? 'red' : 'black'}" 
+            fill="none" 
+            stroke="black" 
             stroke-width="2"/>
         </svg>
         </span>
-        <i class="fas fa-shopping-cart add-btn"></i>
+        <i class="fas fa-shopping-cart add-btn" title="Add to cart"></i>
       </div>
     </div>
       </div>
@@ -61,9 +80,12 @@ function displayProducts(products) {
         card.querySelector('.add-btn').addEventListener('click', () => addToCart(product));
 
         // add to fav
-        card.querySelector('.heart-like').addEventListener('click', () => {
-            let heartPath = card.querySelector('svg path');
-            let heartContainer = card.querySelector('.heart-like');
+        let heartPath = card.querySelector('svg path');
+        let heartContainer = card.querySelector('.heart-like');
+
+        updateFavoriteUI(product.id, heartPath, heartContainer);
+
+        heartContainer.addEventListener('click', () => {
             toggleFavorite(product, heartPath, heartContainer);
         });
 
@@ -80,13 +102,13 @@ function displayProducts(products) {
 
 // fetch data from firebase
 function loadProducts() {
-    const productsRef = ref(realtimeDB, "products"); 
+    const productsRef = ref(realtimeDB, "products");
 
     onValue(productsRef, (snapshot) => {
         const data = snapshot.val();
         if (!data) return;
 
-        // نحول object إلى array
+        // object to array
         const products = Object.keys(data).map(id => ({
             id,
             ...data[id]
@@ -169,6 +191,7 @@ applyBtn.addEventListener('click', () => {
 });
 
 // add to cart
+
 async function addToCart(product) {
 
     let productDetals = {
@@ -183,36 +206,68 @@ async function addToCart(product) {
     await updateDoc(userDocRef, {
         cart:arrayUnion(productDetals)
     })
+
 }
 
+// add to wishlist
+async function toggleFavorite(product, heartPath, heartContainer) {
+    if (!currentUser) {
+        alert("Please log in first!");
+        return;
+    }
 
-// add to fav
-function toggleFavorite(product, heartPath, heartContainer, refreshCallback) {
-    let favs = JSON.parse(localStorage.getItem('favorites')) || [];
-    let index = favs.findIndex(p => p.id === product.id);
+    const userRef = doc(db, "users", currentUser);
+    const snapshot = await getDoc(userRef);
+    const userData = snapshot.data();
+    const wishlist = userData?.wishlist || [];
 
-    if (index === -1) {
-        favs.push(product);
-        localStorage.setItem('favorites', JSON.stringify(favs));
-        heartPath.setAttribute('fill', 'red');
-        heartPath.setAttribute('stroke', 'red');
-        heartContainer.setAttribute('title', 'Remove from Favorites');
-    } else {
-        favs.splice(index, 1);
-        localStorage.setItem('favorites', JSON.stringify(favs));
+    const exists = wishlist.some(item => item.id === product.id);
+
+    if (exists) {
+
+        // remove from wishlist
+        await updateDoc(userRef, {
+            wishlist: wishlist.filter(item => item.id !== product.id)
+        });
         heartPath.setAttribute('fill', 'none');
         heartPath.setAttribute('stroke', 'black');
         heartContainer.setAttribute('title', 'Add to Favorites');
-    }
-
-    // if in wishlist page => refresh immediately
-    if (typeof refreshCallback === "function") {
-        refreshCallback();
+    } else {
+         // add product as object in the wishlist array
+        await updateDoc(userRef, {
+            wishlist: [...wishlist, {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                category: product.category,
+                stock: product.stock
+            }]
+        });
+        heartPath.setAttribute('fill', 'red');
+        heartPath.setAttribute('stroke', 'red');
+        heartContainer.setAttribute('title', 'Remove from Favorites');
     }
 }
 
+// update add to fav ui on changes
+function updateFavoriteUI(productId, heartPath, heartContainer) {
+    if (!currentUser) return;
 
-function isFavorite(productId) {
-    let favs = JSON.parse(localStorage.getItem('favorites')) || [];
-    return favs.some(p => p.id === productId);
+    const userRef = doc(db, "users", currentUser);
+    onSnapshot(userRef, (snapshot) => {
+        const userData = snapshot.data();
+        const wishlist = userData?.wishlist || [];
+
+        const exists = wishlist.some(item => item.id === productId);
+        if (exists) {
+            heartPath.setAttribute('fill', 'red');
+            heartPath.setAttribute('stroke', 'red');
+            heartContainer.setAttribute('title', 'Remove from Favorites');
+        } else {
+            heartPath.setAttribute('fill', 'none');
+            heartPath.setAttribute('stroke', 'black');
+            heartContainer.setAttribute('title', 'Add to Favorites');
+        }
+    });
 }
