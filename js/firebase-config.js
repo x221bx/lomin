@@ -1,23 +1,23 @@
 // ===========================================================
 // firebase-config.js
-// This file is responsible for initializing the Firebase app 
-// and exporting the Firebase services used across the project.
-// 
-// - It imports the required Firebase modules (App, Auth, Firestore).
-// - It defines the Firebase configuration object with keys 
-//   (apiKey, projectId, appId, etc.).
-// - It initializes the Firebase app using the config.
-// - It exports Firebase Authentication (auth) and Firestore (db)
-//   so they can be used in other files (e.g., auth.js).
+// This file initializes Firebase and exports all common services
+// you might need across the project.
 // ===========================================================
 
-// firebase-config.js
+// Firebase SDK imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+// Authentication
+import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+// Firestore (NoSQL database)
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+// Firebase Realtime Database
+import { getDatabase, ref, set, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
 
 
+// Storage (for uploading images, files)
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
 // Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyAfO9XcMri6m9GOrI9QmOtuxLrwRv4Z9HA",
@@ -35,6 +35,10 @@ const app = initializeApp(firebaseConfig);
 
 // Export services
 export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 export const realtimeDB = getDatabase(app);
-export { ref, onValue };
+export const storage = getStorage(app);
+
+// Export Realtime Database helpers (optional, for convenience)
+export { ref, set, push, onValue, update, remove, storageRef, uploadBytes, getDownloadURL };

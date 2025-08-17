@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .product {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .product:hover {
+      background: #f5f5f5;
+    }
+    .details {
+      margin-top: 30px;
+      padding: 20px;
+      border: 2px solid #333;
+      border-radius: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>📦 قائمة المنتجات</h1>
+  <div class="products" id="products"></div>
+
+  <div class="details" id="details">
+    <h2 id="detail-name"></h2>
+    <p><b>السعر:</b> <span id="detail-price"></span></p>
+    <p><b>الوصف:</b> <span id="detail-desc"></span></p>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+      
+      
+    // Firebase Config (نفس اللي عندك في المشروع)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfO9XcMri6m9GOrI9QmOtuxLrwRv4Z9HA",
+      authDomain: "js-project-48e11.firebaseapp.com",
+      databaseURL: "https://js-project-48e11-default-rtdb.firebaseio.com", 
+      projectId: "js-project-48e11",
+      storageBucket: "js-project-48e11.appspot.com",
+      messagingSenderId: "942681838440",
+      appId: "1:942681838440:web:71c531f5df867b6941fcdd",
+      measurementId: "G-WJLB73W1HY",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // عناصر DOM
+    const productsContainer = document.getElementById("products");
+    const detailsBox = document.getElementById("details");
+    const detailName = document.getElementById("detail-name");
+    const detailPrice = document.getElementById("detail-price");
+    const detailDesc = document.getElementById("detail-desc");
+
+    // قراءة المنتجات من Realtime DB
+    const productsRef = ref(db, "products");
+    onValue(productsRef, (snapshot) => {
+      productsContainer.innerHTML = ""; 
+      snapshot.forEach((childSnapshot) => {
+        const product = childSnapshot.val();
+        const id = childSnapshot.key;
+
+        const div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `
+          <h3>${product.name}</h3>
+          <p>💰 ${product.price}</p>
+        <img style="width: 100px;" src="${product.image}" alt="">
+        
+        `;
+        
+        div.addEventListener("click", () => {
+            const selectedProduct = {
+                name: product.name,
+                price: product.price,
+                description: product.description || "لا يوجد وصف"
+            };
+            localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
+            window.location.href = "product-details.html";
+        });
+        productsContainer.appendChild(div);
+      });
+    });
+  </script>
+</body>
+</html>
