@@ -1,4 +1,4 @@
-import { realtimeDB, ref, onValue } from "./firebase-config.js";
+import { realtimeDB, ref, onValue, auth, push ,db, collection, addDoc ,doc ,updateDoc ,arrayUnion ,getDoc} from "./firebase-config.js";
 
 let allProducts = [];
 let filteredProducts = [];
@@ -169,11 +169,20 @@ applyBtn.addEventListener('click', () => {
 });
 
 // add to cart
-function addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push(product);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`${product.title} added to cart!`);
+async function addToCart(product) {
+
+    let productDetals = {
+        id:product.id,
+        name:product.name,
+        price:product.price,
+        quantity: 1,
+        createdAt: new Date()
+    }
+    const userId = auth.currentUser.uid; 
+    const userDocRef = doc(db, 'users', userId);
+    await updateDoc(userDocRef, {
+        cart:arrayUnion(productDetals)
+    })
 }
 
 

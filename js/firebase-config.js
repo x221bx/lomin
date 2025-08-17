@@ -11,7 +11,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
 // Firestore (NoSQL database)
-import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { getFirestore , collection, addDoc ,doc ,updateDoc ,arrayUnion ,getDoc} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 // Firebase Realtime Database
 import { getDatabase, ref, set, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
 
@@ -41,4 +41,4 @@ export const realtimeDB = getDatabase(app);
 export const storage = getStorage(app);
 
 // Export Realtime Database helpers (optional, for convenience)
-export { ref, set, push, onValue, update, remove, storageRef, uploadBytes, getDownloadURL };
+export { ref, set, push, onValue, update, remove, storageRef, uploadBytes, getDownloadURL , collection, addDoc ,doc ,updateDoc ,arrayUnion ,getDoc};
