@@ -9,7 +9,30 @@
     <link rel="stylesheet" href="./css/style.css">
     <!-- font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />  
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .products {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -100,7 +123,7 @@
 
     <!-- start main -->
     <main>
-        <h2 style="text-align: center; padding: 2%;"><i class="fa-solid fa-heart" style="color: red;"></i> My favorite
+        <h2 style="text-align: center; padding: 2%;"><i class="fa-solid fa-heart" style="color: red;"></i> My wishlist
             products <i class="fa-solid fa-heart" style="color: red;"></i></h2>
         <div id="fav-container" class="products"></div>
     </main>
