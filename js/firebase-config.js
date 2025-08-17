@@ -8,7 +8,13 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
 // Authentication
-import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  onAuthStateChanged, 
+  signInWithPopup, 
+  signOut 
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
 // Firestore (NoSQL database)
 import { 
@@ -18,13 +24,15 @@ import {
   doc, 
   updateDoc, 
   arrayUnion, 
+  arrayRemove,
   getDoc, 
   getDocs, 
   query, 
-  where 
+  where, 
+  onSnapshot 
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-// Realtime Database (لو محتاجه)
+// Realtime Database
 import { 
   getDatabase, 
   ref, 
@@ -34,6 +42,14 @@ import {
   update, 
   remove 
 } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+// Storage
+import { 
+  getStorage, 
+  ref as storageRef, 
+  uploadBytes, 
+  getDownloadURL 
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfO9XcMri6m9GOrI9QmOtuxLrwRv4Z9HA",
@@ -56,8 +72,18 @@ export const db = getFirestore(app);
 export const realtimeDB = getDatabase(app);
 export const storage = getStorage(app);
 
-// Export Realtime Database helpers (optional, for convenience)
+// Export everything you might need
+export { 
+  // auth
+  onAuthStateChanged, signInWithPopup, signOut,
 
+  // firestore
+  collection, addDoc, doc, updateDoc, arrayUnion, arrayRemove, 
+  getDoc, getDocs, query, where, onSnapshot,
 
-export { ref, set, push, onValue, update, remove, storageRef, uploadBytes, getDownloadURL , collection, addDoc ,doc ,updateDoc ,arrayUnion ,getDoc};
+  // realtime db
+  ref, set, push, onValue, update, remove,
 
+  // storage
+  storageRef, uploadBytes, getDownloadURL
+};

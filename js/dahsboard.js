@@ -96,8 +96,10 @@
         });
     });
     }
+window.onload =()=> {
     showAllProducts();
-
+    showAllOrders();
+}
     // delete product 
     window.deleteProduct = function(id) {
         const productRef =ref(realtimeDB, `products/${id}`)
@@ -148,7 +150,7 @@ window.editeProduct = function(id) {
     // Placeholder JS for table data
     const productsTableBody = document.querySelector("#products-table tbody");
     const categoriesTableBody = document.querySelector("#categories-table tbody");
-    const ordersTableBody = document.querySelector("#orders-table tbody");
+    const ordersTableBody = document.querySelector(".order-row");
 
     categoriesTableBody.innerHTML = `
             <tr>
@@ -160,41 +162,50 @@ window.editeProduct = function(id) {
             </tr>
             `;
 
-    ordersTableBody.innerHTML = `
-            <tr>
-                <td>John Doe</td>
-                <td>Product A x2</td>
-                <td>200</td>
-                <td>Pending</td>
-                <td>
-                <button class="action confirm">Confirm</button>
-                <button class="action reject">Reject</button>
-                </td>
-            </tr>
-`;
+
+function showAllOrders (){
+    const orderDataRef = ref(realtimeDB,'orders');
+    
+    onValue(orderDataRef, (snapshot)=> {
+        const orderContainer = document.querySelector('.orders-container');
+        orderContainer.innerHTML = ''
+
+        snapshot.forEach((childSnapshot)=> {
+            let order = childSnapshot.val();
+
+            let orderDiv = document.createElement('div')
+            orderDiv.classList.add('order-row')
+            orderDiv.innerHTML += `
+                <div class="order-data">
+                <h1>${order.userName}</h1>
+                <h3>${order.userId}</h3>
+                <p>Total: ${order.total}</p>
+                <p>Date: ${order.date}</p>
+                </div>
+                <div class="order-items"></div>
+                
+            `;
 
 
-
-
-
-
-function testAddingOrders() {
-    const orderId = "user2222_" + Date.now();
-    const orderRef = ref(realtimeDB, "orders/"+orderId);
-
-    set(orderRef, {
-            userId :'user2222',
-            items: [
-                {productId:'product1', name :'product A', price:200,quantity:2},
-                {productId:'product2', name :'product b', price:300,quantity:1}
-            ],
-            total :500,
-            staus : 'rejected',
-            date:new Date().toLocaleString(),
-        
+            let itemsDiv = orderDiv.querySelector(".order-items");
+            order.items.forEach((item)=> {
+            itemsDiv.innerHTML += `
+                <div class="order-item">
+                    <h4>${item.name}</h4>
+                    <h4>${item.price}</h4>
+                    <h4>${item.productId}</h4>
+                    <h4>Quantity: ${item.quantity}</h4>
+                    <h4> ${item.staus}</h4>
+                    <button class="action confirm">Confirm</button>
+                    <button class="action reject">Reject</button>
+                </div>
+            `
+            })        
+            
+            orderContainer.appendChild(orderDiv);
+        })
     })
-} 
+}
 
 
-testAddingOrders()
 
