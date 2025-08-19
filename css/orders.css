@@ -79,17 +79,17 @@
   }
 
   .order-section .order {
-    flex-direction: row; /* يفضلوا جنب بعض */
+    flex-direction: row;
     padding: 10px;
     gap: 10px;
   }
 
   .order-section .order img {
-    width: 60px;  /* صورة أصغر */
+    width: 60px;  
   }
 
   .order-section .order h3 {
-    font-size: 16px; /* تصغير الخط */
+    font-size: 16px; 
   }
 
   .order-section .order h4 {

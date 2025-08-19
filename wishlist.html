@@ -42,12 +42,15 @@
             <img src="image/login-images/Menue icon.svg" alt="">
         </div>
         <div class="left-section">
-            <div class="logo-section">
-                <div class="logo-img">
-                    <img src="image/login-images/Logo.svg" alt="">
+            <a href="index.html">
+                <div class="logo-section">
+                    <div class="logo-img">
+                        <img src="image/login-images/Logo.svg" alt="">
+                    </div>
+                    <h2>Luminae</h2>
                 </div>
-                <h2>Luminae</h2>
-            </div>
+            </a>
+            
             <div class="search-section">
                 <form action="">
                     <input type="text" name="" placeholder="Search Prodcuts">
@@ -64,10 +67,10 @@
         <div class="right-section">
             <div class="links-nav">
                 <ul>
-                    <li><a href="test.html">About us</a></li>
-                    <li>Blog</li>
-                    <li>Contact us</li>
-                    <li>Help& support</li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="blog.html">Blog </a></li>
+                    <li><a href="about.html">Help& support</a></li>
+                    <li><a href="about.html">Contact us</a></li>
                 </ul>
             </div>
             <div class="social-nav">
@@ -102,22 +105,40 @@
             </select>
         </div>
         <div class="pages">
+            <!-- Dashboard link -->
+            <div style="display: none;" id="dashboardLink">
+                <img src="image/login-images/Sign in.svg" alt="">
+                <a href="dashboard/products.html"><h4>Dashboard</h4></a>
+            </div>
+
+            <!-- User orders -->
+            <div style="display: none;" id="userOrders">
+                <img src="image/login-images/Sign in.svg" alt="">
+                <a href="orders.html"><h4>My orders</h4></a>
+            </div>
+
+            <!-- Sign in -->
             <div>
                 <img src="image/login-images/Sign in.svg" alt="">
-                <h4>Sign in</h4>
+                <a href="login.html"><h4>Sign in</h4></a>
             </div>
+
+            <!-- Wishlist -->
             <div>
                 <img src="image/login-images/Sign in.svg" alt="">
-                <h4>Favorites</h4>
+                <a href="wishlist.html"><h4>Favorites</h4></a>
             </div>
-            <div class="shopIcon-section" onclick="window.open('cart.html')">
-                <img src="image/login-images/Card.svg" alt="" onclick="window.open('cart.html')">
-                <h4 onclick="window.open('cart.html')">Cart</h4>
-                <div class="shop-quantity" onclick="window.open('cart.html')">
-                    <h4 onclick="window.open('cart.html')">3</h4>
+
+            <!-- Cart -->
+            <div class="shopIcon-section">
+                <img src="image/login-images/Card.svg" alt="">
+                <a href="cart.html"><h4>Cart</h4></a>
+                <div class="shop-quantity">
+                    <h4>3</h4>
                 </div>
             </div>
-        </div>
+</div>
+
     </section>
     <!--end  bottom nav bar -->
 
@@ -191,6 +212,7 @@
     </footer>
 
     <script type="module" src="./js/wishlist.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

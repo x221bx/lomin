@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+     <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="products.html"><button class="tab-btn active"  data-tab="products"><a href="products.html">Products</a></button></a>
+        <a href="orders.html"><button class="tab-btn" data-tab="orders">Orders</button></a>
+        
+    </div>
+
+    <section style="width: 100%;">
+           <div id="products" class="tab active">
+        <h2>Products</h2>
+        
+        <div id="product-form">
+            <h3>Add / Edit Product</h3>
+            <input type="text" id="prod-name" placeholder="Product Name" required>
+            <input type="number" id="prod-price" placeholder="Price" required>
+            <input type="number" id="prod-stock" placeholder="Stock Quantity" required>
+            <input type="text" id="prod-category" placeholder="Category" required>
+            <input type="text" id="prod-desc" placeholder="Description">
+            <input type="text" id="prod-image" placeholder="Image URL">
+            <button id="save-product">Save Product</button>
+        </div>
+        <h1 style="text-align: center; margin: 20px;">All Products</h1>
+        <div id="product" class="product-container">
+            <table>
+                <tbody>
+
+                </tbody>
+            </table>
+            
+        </div>
+
+        </div>
+
+    </section>
+
+
+
+    
+    <script type="module" src="dahsboard.js"></script>
+</body>
+</html>
