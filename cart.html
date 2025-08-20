@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
 
 </head>
 <body>
-        <!-- start nav bar -->
+    <!-- start nav bar -->
     <nav>
         <div class="menue-icon">
             <img src="image/login-images/Menue icon.svg" alt="">
@@ -114,10 +115,39 @@
 
     </section>
     <!--end  bottom nav bar -->
-    <h1>Cart</h1>
+    <div class="product-page" id="productData">
+
+            <!-- product -->
+
+    </div>
+    <div class="descraption">
+        <div class="right-col">
+            <h4>Product Description</h4>
+            <p>Short dress with a plunging V-neckline and tie detail. Wide sleeves falling below the elbow. Contrast bead details. Invisible back zip fastening.</p>
+            <ul>
+                <p>Product Description</p>
+                <li>Length | Regular</li>
+                <li>Pattern | Floral</li>
+                <li>Size | 38</li>
+            </ul>
+
+        </div>
+        <div class="left-col">
+            <h4>Composition</h4>
+            <p>We work with monitoring programmes to ensure compliance with our social, environmental and health and safety standards for our products. To assess compliance, we have developed a programme of audits and continuous improvement plans.
+            OUTER SHELL
+            90% cotton10% linen</p>
+            <ul>
+                <p>Care instructions</p>
+                <li>Machine Wash at max.30% / 86 with short spin cycle </li>
+                <li>Iron at a maximum of 110C /230C</li>
+            </ul>
 
 
-        <!-- start Footer -->
+        </div>
+
+    </div>
+    <!-- start Footer -->
     <footer>
         <div class="top-footer">
             <ul>
@@ -178,8 +208,59 @@
         </div>
     </footer>
     <!-- end Footer -->
-
+    
     <script type="module" src="js/main.js"></script>
 
+
+    <script>
+        const itemContainer = document.getElementById('productData');
+        const data = JSON.parse(localStorage.getItem('product'));
+        itemContainer.innerHTML = `
+            <div class="left-column">
+            <!-- Image -->
+            <img src="${data.image}" alt="Image">
+        </div>
+                <div class="right-column" >
+            
+    
+        <h1>${data.name}</h1>
+            <p class="price">$${data.price}</p>
+
+            <div class="size">
+            <p>Size</p>
+            <button class="btn">XS</button>
+            <button class="btn">S</button>
+            <button class="btn">M</button>
+            <button class="btn">L</button>
+            <button class="btn">XL</button>
+            </div>
+
+            <div class="color">
+            <p>Color</p>
+            <span class="color-dot" style="background-color: rgb(95, 29, 29);"></span>
+            <span class="color-dot" style="background-color: green;"></span>
+            <span class="color-dot" style="background-color: rgb(131, 141, 230);"></span>
+            <span class="color-dot" style="background-color: orange;"></span>
+            </div>
+
+            <div class="shipping">
+            <p><strong>Shipping:</strong> Free Shipping to Victoria territory</p>
+            <p class="delivery-time">Delivery time: 14–17 days</p>
+            </div>
+
+            <div class="total-price">
+            <p>$79.98</p>
+            </div>
+
+            <div class="shipping-insurance">
+            <input type="checkbox"> Add shipping insurance for $9
+            </div>
+
+            <div class="actions">
+            <button class="shop-now">Order Now</button>
+            </div>
+        </div>
+            `
+    </script>
 </body>
 </html>

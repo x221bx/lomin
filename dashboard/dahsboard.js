@@ -12,6 +12,7 @@
     realtimeDB,
     } from "../js/firebase-config.js";
 
+
     const productRef = ref(realtimeDB, "products");
     const newProducts = push(productRef);
     let currentEditId = null;
@@ -123,6 +124,7 @@ window.addEventListener("DOMContentLoaded", () => {
         saveBtn.addEventListener("click", (e) => {
             e.preventDefault();
             createProduct();
+            swal("Success!", "Your product has been added/updated successfully!", "success");
         });
     }
 
@@ -132,18 +134,37 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // delete product 
-    window.deleteProduct = function(id) {
-        const productRef =ref(realtimeDB, `products/${id}`)
-        remove(productRef)
-        .then(()=> {
-            alert('deleted Succssifully')
-        })
-        .catch((err)=> {
-            console.log(err);
-            
-        })
-    }
+
+  // delete product 
+window.deleteProduct = function(id) {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            const productRef = ref(realtimeDB, `products/${id}`);
+            remove(productRef)
+                .then(() => {
+                    swal("Poof! Product has been deleted!", {
+                        icon: "success",
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    swal("Error deleting product!", {
+                        icon: "error",
+                    });
+                });
+        } else {
+            swal("Your product is safe!");
+        }
+    });
+}
+
 
 window.editeProduct = function(id) {
         currentEditId = id;

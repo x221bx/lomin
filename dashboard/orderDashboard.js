@@ -58,9 +58,9 @@ addOrder.addEventListener('click',  ()=>  {
 
     set(orderRef, {
         userId :'HyzEFDGiBhT1fCuiXtlzxMi0boW2',
-        userName:'moahmed emad',
-        price:200,
-        quantity: 2,
+        userName:' emad',
+        price:800,
+        quantity: 20,
         status: 'pending',
         productName:'Samsung',
         shippingAddress: "Cairo, Nasr City, Street 10",

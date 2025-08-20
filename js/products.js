@@ -29,19 +29,22 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
+
+
 // display products
 function displayProducts(products) {
     const container = document.getElementById('products-container');
     container.innerHTML = '';
 
     products.forEach(product => {
+        // console.log(product);
+        
         const card = document.createElement('div');
         card.classList.add('card');
         const discountRate = 0.20; // 20% discount fixed
         const oldPrice = (product.price / (1 - discountRate)).toFixed(2);
-
         card.innerHTML = `
-        <a href="#" class="see-more">
+        <a href="cart.html" class="see-more">
         <img src="${product.image}" alt="${product.name}">
         <div class="card-content">
         <h3>${product.name.split(" ").slice(0, 2).join(" ")}</h3>
@@ -84,6 +87,7 @@ function displayProducts(products) {
 
         // add to cart
         card.querySelector('.add-btn').addEventListener('click', () => addToCart(product));
+        card.addEventListener('click', () => handelProductCart(product));
 
         // add to fav
         let heartPath = card.querySelector('svg path');
@@ -101,6 +105,8 @@ function displayProducts(products) {
             e.preventDefault();
             window.open(`detailsPage.html?id=${product.id}`, '_blank');
         });
+        
+        
 
         container.appendChild(card);
     });
@@ -277,3 +283,13 @@ function updateFavoriteUI(productId, heartPath, heartContainer) {
         }
     });
 }
+
+
+
+// handel 
+function handelProductCart(product) {
+    localStorage.setItem('product', JSON.stringify(product));
+    
+} 
+
+

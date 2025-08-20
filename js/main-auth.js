@@ -29,8 +29,12 @@ if (googleSignUpBtn) {
     googleSignUpBtn.addEventListener('click', async()=> {
         try{
             await handelGoogleSignUp();
-            alert("Account created with Google successfully");
-            window.location.href = "login.html";
+            setTimeout(() => {
+                swal("Welcome!", "Your account has been created successfully.", "success");
+                setTimeout(() => {
+                    window.location.href = "login.html"; 
+                }, 1500);
+            }, 800);
         }catch(error) {
             console.log(error);
         }
@@ -49,8 +53,13 @@ if (path.includes('signUp.html')) {
         if (!email || !password ) return alert('please fill all fields');
         try {
             await handelSignUp(email,password)
-            alert('Account created Successfully')
-            window.location.href = 'login.html'
+            setTimeout(() => {
+                swal("Welcome!", "Your account has been created successfully.", "success");
+
+                setTimeout(() => {
+                    window.location.href = "login.html"; 
+                }, 1500); 
+            }, 800);
         }catch(error) {
             console.log(error);
         }
@@ -69,8 +78,12 @@ if (googleLoginBtn) {
     googleLoginBtn.addEventListener('click', async()=> {
         try {
             await handelGooglelogin();
-            alert("Logged in with Google successfully");
-            window.location.href = "index.html";
+            setTimeout(() => {
+                swal("Welcome back!", "You have logged in successfully.", "success");
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1000); 
+            }, 800);
         }catch(error) {
             console.log(error);
         }
@@ -89,8 +102,12 @@ if (path.includes('login.html')) {
         if (!email || !password ) return alert('please fill all fields');
         try {
             await hadelLogin(email, password);
-            alert('Logged  in Successfully')
-            window.location.href ='index.html';
+            setTimeout(() => {
+                swal("Welcome back!", "You have logged in successfully.", "success");
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 1000); 
+            }, 800);
         }catch(error) {
             console.log(error);
         }
