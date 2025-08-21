@@ -211,7 +211,8 @@ async function addToCart(product) {
         name:product.name,
         price:product.price,
         quantity: 1,
-        createdAt: new Date()
+        createdAt: new Date(),
+        
     }
     const userId = auth.currentUser.uid; 
     const userDocRef = doc(db, 'users', userId);
@@ -289,7 +290,6 @@ function updateFavoriteUI(productId, heartPath, heartContainer) {
 // handel 
 function handelProductCart(product) {
     localStorage.setItem('product', JSON.stringify(product));
-    
 } 
 
 
