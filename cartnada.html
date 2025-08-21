@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cart</title>
     <link rel="stylesheet" href="css\cartnada.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link  rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 </head>
 <body>
@@ -18,45 +19,8 @@
     <p>card </p>
 
 
-<div class="container">
+<div class="container" id="container">
 
-<div class="item">
-    <img src="image\imgnada\photon2.png" width="60px">
-    <p>2 Pieces Mango set- Regular fit</p>
-  <span class="price">25.99</span> $
-  <button onclick="decrease(this)">−</button>
-  <input type="text" class="qty" value="1" readonly>
-  <button onclick="increase(this)">+</button>
-  <span class="subtotal">25.99</span> $
-  <button onclick="removeItem(this)">
-    <i class="fa-solid fa-trash-can"></i>
-  </button>
-</div>
-
-<div class="item">
-    <img src="image\imgnada\photon3.png" width="60px">
-    <p>3 Pieces Mango set- Casual fit<br>Color:</p>
-  <span class="price">32.99</span> $
-  <button onclick="decrease(this)">−</button>
-  <input type="text" class="qty" value="1" readonly>
-  <button onclick="increase(this)">+</button>
-  <span class="subtotal">32.99</span> $
-  <button onclick="removeItem(this)">
-    <i class="fa-solid fa-trash-can"></i>
-  </button>
-</div>
-
-<div class="item">
-    <img src="image\imgnada\photon1.png" width="60px">
-    <p>Zara Cardigan-Regular fit<br>Color:</p>
-  <span class="price">40.25</span> $
-  <button onclick="decrease(this)">−</button>
-  <input type="text" class="qty" value="1" readonly>
-  <button onclick="increase(this)">+</button>
-  <span class="subtotal">40.25</span> $
-  <button onclick="removeItem(this)">
-    <i class="fa-solid fa-trash-can"></i>
-  </button>
 </div>
 
 <div class="right-section">
@@ -79,78 +43,18 @@
     <td><input id="grandTotal" type="text" value="0" readonly></td>
   </tr>
   <tr>
-    <td colspan="2"><button style="width:50%;">shop now</button></td>
+    <td colspan="2"><button style="width:50%;">Order now</button></td>
 </tr>
 
     </table>
 </div>
-</div>
 
 
 
 
 
-<script>
+<script type="module" src="./js/cart.js"></script>
 
-const SHIPPING = 0; 
-const TAX_RATE = 0;
-
-
-
-
-
-function decrease(btn) {
-  let item = btn.parentElement;
-  let qty = item.querySelector(".qty");
-  if (qty.value > 1) {
-    qty.value--;
-  }
-  updateSubtotal(item);
-  updateSummary();
-}
-
-function increase(btn) {
-  let item = btn.parentElement;
-  let qty = item.querySelector(".qty");
-  qty.value++;
-  updateSubtotal(item);
-  updateSummary();
-}
-
-function updateSubtotal(item) {
-  let price = parseFloat(item.querySelector(".price").innerText);
-  let qty = parseInt(item.querySelector(".qty").value);
-  item.querySelector(".subtotal").innerText = (price * qty).toFixed(2);
-}
-
-function removeItem(btn) {
-  let item = btn.parentElement;
-  item.remove(); 
-  updateSummary();
-}
-
-
-function updateSummary() {
-  let priceSum = 0;
-  document.querySelectorAll(".item").forEach(it => {
-    const unit = parseFloat(it.querySelector(".price").innerText);
-    const qty  = parseInt(it.querySelector(".qty").value);
-    priceSum += unit * qty;
-  });
-
-  const ship = SHIPPING;
-  const tax  = priceSum * TAX_RATE;
-  const total = priceSum + ship + tax;
-
-  document.getElementById("sumPrice").innerText = priceSum.toFixed(2);
-  document.getElementById("sumShip").innerText  = ship.toFixed(2);
-  document.getElementById("sumTax").innerText   = tax.toFixed(2);
-  document.getElementById("grandTotal").value   = total.toFixed(2);
-}
-
-
-updateSummary();
-</script>
 </body>
 
 </html>

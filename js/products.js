@@ -211,6 +211,9 @@ async function addToCart(product) {
         name:product.name,
         price:product.price,
         quantity: 1,
+        image: product.image,
+        category: product.category,
+        stock: product.stock,
         createdAt: new Date()
     }
     const userId = auth.currentUser.uid; 
