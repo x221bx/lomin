@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+    margin: 20px;
+
+}
+
+ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.right-section{
+    background-color:#E9E9E9 ;
+}
+.container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 5px;
+}
+.qty{
+    width: 50px;
+}
