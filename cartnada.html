@@ -43,11 +43,60 @@
     <td><input id="grandTotal" type="text" value="0" readonly></td>
   </tr>
   <tr>
-    <td colspan="2"><button style="width:50%;">Order now</button></td>
+
+    <td colspan="2"><button id="addToOrder" style="width:50%;">shop now</button></td>
+>>>>>>> main
 </tr>
 
     </table>
 </div>
+
+=======
+</div>
+
+
+
+
+<script type="module" src="js/cartLogic.js"></script>
+<script>
+
+const SHIPPING = 0; 
+const TAX_RATE = 0;
+
+
+
+
+
+function decrease(btn) {
+  let item = btn.parentElement;
+  let qty = item.querySelector(".qty");
+  if (qty.value > 1) {
+    qty.value--;
+  }
+  updateSubtotal(item);
+  updateSummary();
+}
+
+function increase(btn) {
+  let item = btn.parentElement;
+  let qty = item.querySelector(".qty");
+  qty.value++;
+  updateSubtotal(item);
+  updateSummary();
+}
+
+function updateSubtotal(item) {
+  let price = parseFloat(item.querySelector(".price").innerText);
+  let qty = parseInt(item.querySelector(".qty").value);
+  item.querySelector(".subtotal").innerText = (price * qty).toFixed(2);
+}
+
+function removeItem(btn) {
+  let item = btn.parentElement;
+  item.remove(); 
+  updateSummary();
+}
+
 
 
 

@@ -211,6 +211,7 @@ async function addToCart(product) {
         name:product.name,
         price:product.price,
         quantity: 1,
+
         image: product.image,
         category: product.category,
         stock: product.stock,
@@ -292,7 +293,6 @@ function updateFavoriteUI(productId, heartPath, heartContainer) {
 // handel 
 function handelProductCart(product) {
     localStorage.setItem('product', JSON.stringify(product));
-    
 } 
 
 
