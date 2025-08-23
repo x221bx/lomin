@@ -14,12 +14,24 @@ ul{
 
 .right-section{
     background-color:#E9E9E9 ;
+      position: relative;
+    top: 0;
 }
+
+
 .container{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: auto auto auto auto;
+    
+    
     gap: 5px;
 }
 .qty{
     width: 50px;
 }
+.subtotal+button{
+    background-color: white;
+    border: none;
+}
+
+   
