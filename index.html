@@ -1,119 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title> Luminae - Fashion Store</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/home.css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <title>Luminae - Fashion Store</title>
+
+    <!-- Global + Home CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/home.css" />
+
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
 </head>
 <body>
-<!-- Header -->
-    <!-- start nav bar -->
-    <nav>
-        <div class="menue-icon">
-            <img src="image/login-images/Menue icon.svg" alt="">
-        </div>
-        <div class="left-section">
-            <a href="index.html">
-                <div class="logo-section">
-                    <div class="logo-img">
-                        <img src="image/login-images/Logo.svg" alt="">
-                    </div>
-                    <h2>Luminae</h2>
-                </div>
-            </a>
-            
-            <div class="search-section">
-                <form action="">
-                    <input type="text" name="" placeholder="Search Prodcuts">
-                    <select name="" id="">
-                        <option value="">All Categories</option>
-                    </select>
-                    <div class="search-icon">
-                        <img src="image/login-images/Search.svg" alt="">
-                    </div>
-                </form>
-            </div>
-        </div>
 
-        <div class="right-section">
-            <div class="links-nav">
-                <ul>
-                    <li><a href="about.html">About us</a></li>
-                    <li><a href="blog.html">Blog </a></li>
-                    <li><a href="about.html">Help& support</a></li>
-                    <li><a href="about.html">Contact us</a></li>
-                </ul>
+<!-- Navbar -->
+<nav>
+    <div class="menue-icon">
+        <img src="image/login-images/Menue icon.svg" alt="" />
+    </div>
+
+    <div class="left-section">
+        <a href="index.html">
+            <div class="logo-section">
+                <div class="logo-img">
+                    <img src="image/login-images/Logo.svg" alt="" />
+                </div>
+                <h2>Luminae</h2>
             </div>
-            <div class="social-nav">
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-telegram"></i>
-            </div>
+        </a>
+
+        <div class="search-section">
+            <form action="" onsubmit="return false;">
+                <input type="text" placeholder="Search Products" id="searchInput" />
+                <select id="categorySelect">
+                    <option value="">All Categories</option>
+                </select>
+                <div class="search-icon" onclick="performSearch()">
+                    <img src="image/login-images/Search.svg" alt="Search" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <div class="links-nav">
+            <ul>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">Help & support</a></li>
+                <li><a href="about.html">Contact us</a></li>
+            </ul>
+        </div>
+        <div class="social-nav">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-telegram"></i>
+        </div>
+    </div>
+
+    <div class="shopIcon-section">
+        <div class="shop-icon">
+            <img src="image/login-images/Cards.svg" alt="" />
+        </div>
+        <div class="shop-quantity">
+            <h3>0</h3>
+        </div>
+    </div>
+</nav>
+
+<!-- Bottom Navbar -->
+<section class="bottom-nav">
+    <div class="categories">
+        <img src="image/login-images/categories.svg" alt="" style="width: 40px" />
+        <h2>Categories</h2>
+    </div>
+
+    <div class="selection">
+        <select><option>USD</option></select>
+        <select><option>English</option></select>
+    </div>
+
+    <div class="pages">
+        <div style="display: none" id="dashboardLink">
+            <img src="image/login-images/Sign in.svg" alt="" />
+            <a href="dashboard/products.html"><h4>Dashboard</h4></a>
+        </div>
+        <div style="display: none" id="userOrders">
+            <img src="image/login-images/Sign in.svg" alt="" />
+            <a href="orders.html"><h4>My orders</h4></a>
+        </div>
+        <div>
+            <img src="image/login-images/Card.svg" alt="" />
+            <a href="products.html"><h4>Products</h4></a>
+        </div>
+        <!-- <div>
+            <img src="image/login-images/Sign in.svg" alt="" />
+            <a href="login.html"><h4>Sign in</h4></a>
+        </div> -->
+        <div>
+            <img src="image/login-images/Sign in.svg" alt="" />
+            <a href="wishlist.html"><h4>Favorites</h4></a>
         </div>
         <div class="shopIcon-section">
-            <div class="shop-icon">
-                <img src="image/login-images/Cards.svg" alt="">
-            </div>
-            <div class="shop-quantity">
-                <h3>3</h3>
-            </div>
+            <img src="image/login-images/Card.svg" alt="" />
+            <a href="cartnada.html"><h4>Cart</h4></a>
+            <!-- <div class="shop-quantity">
+                <h4>0</h4>
+            </div> -->
         </div>
-    </nav>
-    <!-- end nav bar -->
+    </div>
+</section>
 
-    <!-- start bottom nav bar -->
-    <section class="bottom-nav">
-        <div class="categories">
-            <img src="image/login-images/categories.svg" alt="" style="width: 40px;">
-            <h2>Categories</h2>
-        </div>
-        <div class="selection">
-            <select name="">
-                <option>USD</option>
-            </select>
-            <select name="">
-                <option>English</option>
-            </select>
-        </div>
-        <div class="pages">
-            <!-- Dashboard link -->
-            <div style="display: none;" id="dashboardLink">
-                <img src="image/login-images/Sign in.svg" alt="">
-                <a href="dashboard/products.html"><h4>Dashboard</h4></a>
-            </div>
-
-            <!-- User orders -->
-            <div style="display: none;" id="userOrders">
-                <img src="image/login-images/Sign in.svg" alt="">
-                <a href="orders.html"><h4>My orders</h4></a>
-            </div>
-
-            <!-- Sign in -->
-            <div>
-                <img src="image/login-images/Sign in.svg" alt="">
-                <a href="login.html"><h4>Sign in</h4></a>
-            </div>
-
-            <!-- Wishlist -->
-            <div>
-                <img src="image/login-images/Sign in.svg" alt="">
-                <a href="wishlist.html"><h4>Favorites</h4></a>
-            </div>
-
-            <!-- Cart -->
-            <div class="shopIcon-section">
-                <img src="image/login-images/Card.svg" alt="">
-                <a href="cart.html"><h4>Cart</h4></a>
-                <div class="shop-quantity">
-                    <h4>3</h4>
-                </div>
-            </div>
-</div>
-
-    </section>
-    <!--end  bottom nav bar -->
 <!-- Hero Section -->
 <section class="hero">
     <div class="container">
@@ -148,6 +148,9 @@
     </div>
 </section>
 
+<!-- Quick Category Search -->
+<div id="quickCategoryContainer"></div>
+
 <!-- Flash Sales -->
 <section class="flash-sales">
     <div class="container">
@@ -158,23 +161,19 @@
                     <span>Ends in:</span>
                     <div class="countdown">
                         <div class="countdown-box">
-                            <span class="countdown-value" id="days">02</span>
-                            <span class="countdown-label">Days</span>
+                            <span id="days">00</span><span>Days</span>
                         </div>
-                        <span class="countdown-separator">:</span>
+                        <span>:</span>
                         <div class="countdown-box">
-                            <span class="countdown-value" id="hours">11</span>
-                            <span class="countdown-label">Hours</span>
+                            <span id="hours">00</span><span>Hours</span>
                         </div>
-                        <span class="countdown-separator">:</span>
+                        <span>:</span>
                         <div class="countdown-box">
-                            <span class="countdown-value" id="minutes">45</span>
-                            <span class="countdown-label">Min</span>
+                            <span id="minutes">00</span><span>Min</span>
                         </div>
-                        <span class="countdown-separator">:</span>
+                        <span>:</span>
                         <div class="countdown-box">
-                            <span class="countdown-value" id="seconds">32</span>
-                            <span class="countdown-label">Sec</span>
+                            <span id="seconds">00</span><span>Sec</span>
                         </div>
                     </div>
                 </div>
@@ -182,103 +181,7 @@
             <a href="products.html" class="view-all">View all →</a>
         </div>
 
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop" alt="Sunny Beach" class="product-image">
-                    <div class="discount-badge">-28%</div>
-                </div>
-                <div class="product-info">
-                    <h3>Sunny Beach</h3>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span>(4.5)</span>
-                    </div>
-                    <div class="price">
-                        <span class="sale-price">$89.99</span>
-                        <span class="original-price">$125.99</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop" alt="Reebok" class="product-image">
-                    <div class="discount-badge">-15%</div>
-                </div>
-                <div class="product-info">
-                    <h3>Reebok</h3>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span>(4.8)</span>
-                    </div>
-                    <div class="price">
-                        <span class="sale-price">$110.99</span>
-                        <span class="original-price">$130.99</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop" alt="Polao" class="product-image">
-                    <div class="discount-badge">-26%</div>
-                </div>
-                <div class="product-info">
-                    <h3>Polao</h3>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <span>(4.3)</span>
-                    </div>
-                    <div class="price">
-                        <span class="sale-price">$89.99</span>
-                        <span class="original-price">$120.99</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop" alt="Sketchers" class="product-image">
-                    <div class="discount-badge">-28%</div>
-                </div>
-                <div class="product-info">
-                    <h3>Sketchers</h3>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span>(4.6)</span>
-                    </div>
-                    <div class="price">
-                        <span class="sale-price">$89.99</span>
-                        <span class="original-price">$124.99</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="products-grid" id="flashProductsGrid"></div>
     </div>
 </section>
 
@@ -289,46 +192,7 @@
             <h2>Trending must-haves</h2>
             <a href="products.html" class="view-all">View all →</a>
         </div>
-
-        <div class="trending-grid">
-            <div class="trending-card trending-card-1">
-                <div class="new-badge">NEW</div>
-                <div class="trending-content">
-                    <h3>Cool & Sexy Calvin Klein</h3>
-                    <p>NEW</p>
-                    <div class="trending-price-action">
-                        <span class="price">$99</span>
-                        <button class="shop-btn">Shop Now</button>
-                    </div>
-                </div>
-                <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=500&fit=crop" alt="Calvin Klein" class="trending-bg">
-            </div>
-
-            <div class="trending-card trending-card-2">
-                <div class="trending-content">
-                    <h3>Cool & Sexy Calvin Klein</h3>
-                    <p>Sport Collection</p>
-                    <div class="trending-price-action">
-                        <span class="price">$89</span>
-                        <button class="shop-btn">Shop Now</button>
-                    </div>
-                </div>
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=500&fit=crop" alt="Sport Collection" class="trending-bg">
-            </div>
-
-            <div class="trending-card trending-card-3">
-                <div class="new-badge">NEW</div>
-                <div class="trending-content">
-                    <h3>Beige coat Z&ra</h3>
-                    <p>NEW</p>
-                    <div class="trending-price-action">
-                        <span class="price">$199</span>
-                        <button class="shop-btn">Shop Now</button>
-                    </div>
-                </div>
-                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop" alt="Zara Coat" class="trending-bg">
-            </div>
-        </div>
+        <div class="trending-grid" id="trendingGrid"></div>
     </div>
 </section>
 
@@ -339,124 +203,10 @@
             <h2>Top100</h2>
             <a href="products.html" class="view-all">View all →</a>
         </div>
-
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=300&h=400&fit=crop" alt="Moss" class="product-image">
-                    <button class="heart-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-                <div class="product-info">
-                    <div class="brand">Moss</div>
-                    <h3>Moss</h3>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span>(102)</span>
-                    </div>
-                    <div class="price">
-                        <span class="sale-price">$39</span>
-                        <span class="original-price">$69</span>
-                        <span class="discount-percent">-43%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=300&h=400&fit=crop" alt="Zara" class="product-image">
-                    <button class="heart-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-                <div class="product-info">
-                    <div class="brand">Zara</div>
-                    <h3>Zara</h3>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span>(89)</span>
-                    </div>
-                    <div class="price">
-                        <span class="sale-price">$89</span>
-                        <span class="original-price">$129</span>
-                        <span class="discount-percent">-31%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=300&h=400&fit=crop" alt="Moss" class="product-image">
-                    <button class="heart-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-                <div class="product-info">
-                    <div class="brand">Moss</div>
-                    <h3>Moss</h3>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span>(76)</span>
-                    </div>
-                    <div class="price">
-                        <span class="sale-price">$119</span>
-                        <span class="original-price">$159</span>
-                        <span class="discount-percent">-25%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=300&h=400&fit=crop" alt="Roman original" class="product-image">
-                    <button class="heart-btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-                <div class="product-info">
-                    <div class="brand">Roman</div>
-                    <h3>Roman original</h3>
-                    <div class="rating">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <span>(54)</span>
-                    </div>
-                    <div class="price">
-                        <span class="sale-price">$89</span>
-                        <span class="original-price">$129</span>
-                        <span class="discount-percent">-31%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="products-grid" id="top100Grid"></div>
     </div>
 </section>
 
-<!-- Promotional Banners -->
 <section class="promo-banners">
     <!-- Summer & Sport Brands -->
     <div class="container">
@@ -526,63 +276,43 @@
     </div>
 </section>
 
-    <!-- start Footer -->
-    <footer>
-        <div class="top-footer">
-            <ul>
-                <li><h3>Company</h3></li>
-                <li>About Us</li>
-                <li>Our Store</li>
-                <li>Contacts Us</li>
-            </ul>
-            <ul>
-                <li><h3>Career Opportunities</h3></li>
-                <li>Selling Programs</li>
-                <li>Advertise</li>
-                <li>Cooperation</li>
-            </ul>
-            <ul>
-                <li><h3>How to Buy</h3></li>
-                <li>Making Payments</li>
-                <li>Delivery Options</li>
-                <li>Buyer Protection</li>
-                <li>New User Guide</li>
-            </ul>
-            <ul>
-                <li><h3>Help</h3></li>
-                <li>Contacts Us</li>
-                <li>FAQ</li>
-                <li>Privacy Policy</li>
-            </ul>
-        </div>
-        <div class="bottom-footer">
-            <div class="payment-secctoin">
-                <div>
-                    <img src="image/login-images/image-112.svg" alt="">
-                    <img src="image/login-images/image-113.svg" alt="">
-                    <img src="image/login-images/login-images/image-114.svg" alt="">
-                </div>
-                <select name="" id="">
-                    <option value="">English</option>
-                </select>
-            </div>
-            <span class="line"></span>
-            <div class="copyright">
-                <h3>165-179 Forster Road City of Monash, Melbourne, Australia</h3>
-                <p>©2023 Copyright in reserved for lumine shop</p>
-                <div class="social-icons">
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-telegram"></i>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- end Footer -->
-<script src="js/home.js"></script>
-<script type="module" src="js/main.js"></script>
+<!-- Footer -->
+<footer>
+    <div class="top-footer">
+        <ul><li><h3>Company</h3></li><li>About Us</li><li>Our Store</li><li>Contacts Us</li></ul>
+        <ul><li><h3>Career Opportunities</h3></li><li>Selling Programs</li><li>Advertise</li><li>Cooperation</li></ul>
+        <ul><li><h3>How to Buy</h3></li><li>Making Payments</li><li>Delivery Options</li><li>Buyer Protection</li><li>New User Guide</li></ul>
+        <ul><li><h3>Help</h3></li><li>Contacts Us</li><li>FAQ</li><li>Privacy Policy</li></ul>
+    </div>
 
+    <div class="bottom-footer">
+        <div class="payment-secctoin">
+            <div>
+                <img src="image/login-images/image-112.svg" alt="" />
+                <img src="image/login-images/image-113.svg" alt="" />
+                <img src="image/login-images/image-114.svg" alt="" />
+            </div>
+            <select><option value="">English</option></select>
+        </div>
+        <span class="line"></span>
+        <div class="copyright">
+            <h3>165-179 Forster Road City of Monash, Melbourne, Australia</h3>
+            <p>©2023 Copyright in reserved for Luminae shop</p>
+            <div class="social-icons">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-telegram"></i>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Search Suggestions -->
+<div id="searchSuggestions"></div>
+
+<!-- Scripts -->
+<script type="module" src="js/home.js"></script>
+
+<script type="module" src="js/products.js"></script>
 </body>
 </html>
-
-

@@ -52,20 +52,3 @@ update(orderRef, { status: newStatus })
 
 let addOrder = document.getElementById('addOrder');
 
-addOrder.addEventListener('click',  ()=>  {
-    const orderId = "user2222_"+Date.now();
-    const orderRef = ref(realtimeDB, "orders/"+orderId);
-
-    set(orderRef, {
-        userId :'HyzEFDGiBhT1fCuiXtlzxMi0boW2',
-        userName:' emad',
-        price:800,
-        quantity: 20,
-        status: 'pending',
-        productName:'Samsung',
-        shippingAddress: "Cairo, Nasr City, Street 10",
-        phoneNumber: "01012345678",
-        notes: "please Add this to notes",
-        date:new Date().toLocaleString(),
-    });
-});

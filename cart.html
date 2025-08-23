@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="css/cart.css">
 
 </head>
+
 <body>
     <!-- start nav bar -->
     <nav>
@@ -23,7 +25,7 @@
                     <h2>Luminae</h2>
                 </div>
             </a>
-            
+
             <div class="search-section">
                 <form action="">
                     <input type="text" name="" placeholder="Search Prodcuts">
@@ -81,49 +83,65 @@
             <!-- Dashboard link -->
             <div style="display: none;" id="dashboardLink">
                 <img src="image/login-images/Sign in.svg" alt="">
-                <a href="dashboard/products.html"><h4>Dashboard</h4></a>
+                <a href="dashboard/products.html">
+                    <h4>Dashboard</h4>
+                </a>
             </div>
 
             <!-- User orders -->
             <div style="display: none;" id="userOrders">
                 <img src="image/login-images/Sign in.svg" alt="">
-                <a href="orders.html"><h4>My orders</h4></a>
+                <a href="orders.html">
+                    <h4>My orders</h4>
+                </a>
             </div>
 
             <!-- Sign in -->
-            <div>
+            <!-- <div>
                 <img src="image/login-images/Sign in.svg" alt="">
                 <a href="login.html"><h4>Sign in</h4></a>
-            </div>
+            </div> -->
 
+            <!-- Products -->
+            <div>
+                <img src="image/login-images/Card.svg" alt="">
+                <a href="products.html">
+                    <h4>Products</h4>
+                </a>
+            </div>
             <!-- Wishlist -->
             <div>
                 <img src="image/login-images/Sign in.svg" alt="">
-                <a href="wishlist.html"><h4>Favorites</h4></a>
+                <a href="wishlist.html">
+                    <h4>Favorites</h4>
+                </a>
             </div>
 
             <!-- Cart -->
             <div class="shopIcon-section">
                 <img src="image/login-images/Card.svg" alt="">
-                <a href="cart.html"><h4>Cart</h4></a>
-                <div class="shop-quantity">
+                <a href="cartnada.html">
+                    <h4>Cart</h4>
+                </a>
+                <!-- <div class="shop-quantity">
                     <h4>3</h4>
-                </div>
+                </div> -->
             </div>
-</div>
+        </div>
 
 
     </section>
     <!--end  bottom nav bar -->
     <div class="product-page" id="productData">
 
-            <!-- product -->
+        <!-- product -->
 
     </div>
     <div class="descraption">
         <div class="right-col">
             <h4>Product Description</h4>
-            <p>Short dress with a plunging V-neckline and tie detail. Wide sleeves falling below the elbow. Contrast bead details. Invisible back zip fastening.</p>
+            <p>Short dress with a plunging V-neckline and tie detail. Wide sleeves falling below the elbow. Contrast
+                bead details. Invisible back zip fastening.</p>
             <ul>
                 <p>Product Description</p>
                 <li>Length | Regular</li>
@@ -134,9 +152,11 @@
         </div>
         <div class="left-col">
             <h4>Composition</h4>
-            <p>We work with monitoring programmes to ensure compliance with our social, environmental and health and safety standards for our products. To assess compliance, we have developed a programme of audits and continuous improvement plans.
-            OUTER SHELL
-            90% cotton10% linen</p>
+            <p>We work with monitoring programmes to ensure compliance with our social, environmental and health and
+                safety standards for our products. To assess compliance, we have developed a programme of audits and
+                continuous improvement plans.
+                OUTER SHELL
+                90% cotton10% linen</p>
             <ul>
                 <p>Care instructions</p>
                 <li>Machine Wash at max.30% / 86 with short spin cycle </li>
@@ -208,13 +228,16 @@
         </div>
     </footer>
     <!-- end Footer -->
-    
+
     <script type="module" src="js/main.js"></script>
 
 
     <script>
         const itemContainer = document.getElementById('productData');
+
         const data = JSON.parse(localStorage.getItem('product'));
+        console.log(data);
+
         itemContainer.innerHTML = `
             <div class="left-column">
             <!-- Image -->
@@ -263,4 +286,5 @@
             `
     </script>
 </body>
+
 </html>
