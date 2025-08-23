@@ -1,46 +1,45 @@
-import {
-  // auth
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut,
+    import {
+    // auth
+    onAuthStateChanged,
+    signInWithPopup,
+    signOut,
 
-  // firestore
-  collection,
-  addDoc,
-  doc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-  getDoc,
-  getDocs,
-  query,
-  where,
+    // firestore
+    collection,
+    addDoc,
+    doc,
+    updateDoc,
+    arrayUnion,
+    arrayRemove,
+    getDoc,
+    getDocs,
+    query,
+    where,
 
-  // realtime db
-  ref,
-  set,
-  push,
+    // realtime db
+    ref,
+    set,
+    push,
 
-  // storage
-  storageRef,
-  uploadBytes,
-  getDownloadURL,
-  auth,
-  db,
-  realtimeDB
-} from "./firebase-config.js";
+    // storage
+    storageRef,
+    uploadBytes,
+    getDownloadURL,
+    auth,
+    db,
+    realtimeDB
+    } from "./firebase-config.js";
 
-let addOrder = document.getElementById("addToOrder");
-let currentUser;
+    let addOrder = document.getElementById("addToOrder");
+    let currentUser;
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    currentUser = user; 
-  } else {
-    console.log("no user found");
-  }
-});
-
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+        currentUser = user; 
+    } else {
+        console.log("no user found");
+    }
+    });
 addOrder.addEventListener("click", async () => {
   if (!currentUser) {
     console.log("User not logged in");
@@ -65,8 +64,7 @@ addOrder.addEventListener("click", async () => {
     return;
   }
 
-
-  for (let item of cartItems) {
+  const orderPromises = cartItems.map(item => {
     const dataOrder = {
       userId: currentUserId,
       userName: currentUserName || "unknown",
@@ -82,18 +80,22 @@ addOrder.addEventListener("click", async () => {
       date: new Date().toLocaleString(),
     };
 
-    addToOrderReal(dataOrder);
-  }
+    return addToOrderReal(dataOrder);
+  });
 
+  await Promise.all(orderPromises);
 
-  await updateDoc(userDocRef, { cart: [] });
-  console.log("All products added as separate orders, cart cleared.");
+  swal("Done", "All products added as separate orders, cart cleared.", "success");
+    setTimeout(() => {
+        updateDoc(userDocRef, { cart: [] });
+        setTimeout(() => {
+            window.location.href = "userOrder.html"; 
+        }, 800);
+    }, 1500);
 });
 
-
-function addToOrderReal(order) {
+async function addToOrderReal(order) {
   const orderRef = push(ref(realtimeDB, "orders"));
-  
-  set(orderRef, order);
+  await set(orderRef, order);
   console.log("Order added:", order);
 }
