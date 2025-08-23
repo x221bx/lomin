@@ -45,7 +45,9 @@ function displayProducts(products, containerSelector) {
     if (!container) return;
     container.innerHTML = '';
 
-    products.forEach(product => {
+    const productsToShow = products.slice(0, 3);
+
+    productsToShow.forEach(product => {
         const card = document.createElement('div');
         card.classList.add('card');
         const discountRate = 0.20;
@@ -91,12 +93,11 @@ function loadProducts() {
         const products = Object.keys(data).map(id => ({ id, ...data[id] }));
         allProducts = products;
 
-        displayProducts(products, '#flashProductsGrid');
-        displayProducts(products, '#trendingGrid');
-        displayProducts(products, '#top100Grid');
+        displayProducts(products.slice(0, 3), '#flashProductsGrid');
+        displayProducts(products.slice(3, 6), '#trendingGrid');
+        displayProducts(products.slice(6, 9), '#top100Grid');
     });
 }
-
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         addImageStyling();
