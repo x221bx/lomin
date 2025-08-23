@@ -35,7 +35,7 @@ let currentUser;
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    currentUser = user; // نفس الـ uid اللي في Firestore
+    currentUser = user; 
   } else {
     console.log("no user found");
   }
@@ -48,8 +48,8 @@ addOrder.addEventListener("click", async () => {
   }
 
   const userDocRef = doc(db, "users", currentUser.uid);
-  const currentUserId = currentUser.uid ;
-  const currentUserName = currentUser.displayName ;
+  const currentUserId = currentUser.uid;
+  const currentUserName = currentUser.displayName;
   const snapshot = await getDoc(userDocRef);
 
   if (!snapshot.exists()) {
@@ -58,25 +58,42 @@ addOrder.addEventListener("click", async () => {
   }
 
   const userData = snapshot.data();
-    const dataOrders = {
-    userId: currentUserId,
-    userName: currentUserName || "unknown",
-    price: userData.price || 0,
-    email: userData.email || "no-email",
-    quantity: userData.quantity || 1,
-    status: "pending",
-    productName: userData.productName || "no product",
-    shippingAddress: "haram",
-    phoneNumber: "01012345678",
-    notes: "hi",
-    date: new Date().toLocaleString(),
-  };
+  const cartItems = userData.cart || [];
 
-  addToOrderReal(dataOrders);
+  if (cartItems.length === 0) {
+    console.log("Cart is empty");
+    return;
+  }
+
+
+  for (let item of cartItems) {
+    const dataOrder = {
+      userId: currentUserId,
+      userName: currentUserName || "unknown",
+      email: userData.email || "no-email",
+      productId: item.id,
+      productName: item.name,
+      price: item.price,
+      quantity: item.quantity,
+      status: "pending",
+      shippingAddress: "haram",
+      phoneNumber: "01012345678",
+      notes: "hi",
+      date: new Date().toLocaleString(),
+    };
+
+    addToOrderReal(dataOrder);
+  }
+
+
+  await updateDoc(userDocRef, { cart: [] });
+  console.log("All products added as separate orders, cart cleared.");
 });
+
 
 function addToOrderReal(order) {
   const orderRef = push(ref(realtimeDB, "orders"));
+  
   set(orderRef, order);
   console.log("Order added:", order);
 }
