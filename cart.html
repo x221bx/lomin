@@ -214,7 +214,10 @@
 
     <script>
         const itemContainer = document.getElementById('productData');
+
         const data = JSON.parse(localStorage.getItem('product'));
+        console.log(data);
+        
         itemContainer.innerHTML = `
             <div class="left-column">
             <!-- Image -->

@@ -1,109 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-    <link rel="stylesheet" href="css\cartnada.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link  rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-</head>
-<body>
-    <ul class="firstul">
-            <li>CARD</li>
-            <li>Customer  info</li>
-            <li>Shipping & Payment</li>
-            <li>Product confirmation</li>
-    </ul>
-    <hr style="border: 2px solid #D9D9D9;">
-    <p>card </p>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Cart</title>
+      <link rel="stylesheet" href="css\cartnada.css">
+      <link rel="stylesheet" href="./css/style.css">
+      <link  rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+      <style>
+        .container {
+          display: flex;
+        }
+      </style>
+  </head>
+  <body>
+      <ul class="firstul">
+              <li>CARD</li>
+              <li>Customer  info</li>
+              <li>Shipping & Payment</li>
+              <li>Product confirmation</li>
+      </ul>
+      <hr style="border: 2px solid #D9D9D9;">
+      <p>card </p>
+
+  <div class="container" id="container">
 
 
-<div class="container" id="container">
+  </div>
 
-</div>
 
-<div class="right-section">
-<table  >
-    <caption style="text-align: start;">Order Summary</caption>
+
+  <div class="right-section">
+  <table  >
+      <caption style="text-align: start;">Order Summary</caption>
+      <tr>
+          <td>Price</td> 
+            <td id="sumPrice">0</td>
+      </tr>
     <tr>
-        <td>Price</td> 
-          <td id="sumPrice">0</td>
-    </tr>
-  <tr>
-    <td>Shipping</td>
-    <td id="sumShip">0</td>
-</tr>
-  <tr>
-    <td>Tax</td>  
-       <td id="sumTax">0</td>
-    </tr>
-  <tr>
-    <td>total</td>
-    <td><input id="grandTotal" type="text" value="0" readonly></td>
+      <td>Shipping</td>
+      <td id="sumShip">0</td>
   </tr>
-  <tr>
+    <tr>
+      <td>Tax</td>  
+        <td id="sumTax">0</td>
+      </tr>
+    <tr>
+      <td>total</td>
+      <td><input id="grandTotal" type="text" value="0" readonly></td>
+    </tr>
+    <tr>
 
-    <td colspan="2"><button id="addToOrder" style="width:50%;">shop now</button></td>
->>>>>>> main
-</tr>
+      <td colspan="2"><button id="addToOrder" style="width:50%;">shop now</button></td>
+  </tr>
 
-    </table>
-</div>
-
-=======
-</div>
-
-
-
-
-<script type="module" src="js/cartLogic.js"></script>
-<script>
-
-const SHIPPING = 0; 
-const TAX_RATE = 0;
+      </table>
+  </div>
 
 
 
 
 
-function decrease(btn) {
-  let item = btn.parentElement;
-  let qty = item.querySelector(".qty");
-  if (qty.value > 1) {
-    qty.value--;
+
+  <script type="module" src="js/cartLogic.js"></script>
+  <script>
+
+  const SHIPPING = 0; 
+  const TAX_RATE = 0;
+
+
+
+
+
+  function decrease(btn) {
+    let item = btn.parentElement;
+    let qty = item.querySelector(".qty");
+    if (qty.value > 1) {
+      qty.value--;
+    }
+    updateSubtotal(item);
+    updateSummary();
   }
-  updateSubtotal(item);
-  updateSummary();
-}
 
-function increase(btn) {
-  let item = btn.parentElement;
-  let qty = item.querySelector(".qty");
-  qty.value++;
-  updateSubtotal(item);
-  updateSummary();
-}
+  function increase(btn) {
+    let item = btn.parentElement;
+    let qty = item.querySelector(".qty");
+    qty.value++;
+    updateSubtotal(item);
+    updateSummary();
+  }
 
-function updateSubtotal(item) {
-  let price = parseFloat(item.querySelector(".price").innerText);
-  let qty = parseInt(item.querySelector(".qty").value);
-  item.querySelector(".subtotal").innerText = (price * qty).toFixed(2);
-}
+  function updateSubtotal(item) {
+    let price = parseFloat(item.querySelector(".price").innerText);
+    let qty = parseInt(item.querySelector(".qty").value);
+    item.querySelector(".subtotal").innerText = (price * qty).toFixed(2);
+  }
 
-function removeItem(btn) {
-  let item = btn.parentElement;
-  item.remove(); 
-  updateSummary();
-}
+  function removeItem(btn) {
+    let item = btn.parentElement;
+    item.remove(); 
+    updateSummary();
+  }
 
 
 
+  </script>
 
 
+  <script type="module" src="./js/cart.js"></script>
 
-<script type="module" src="./js/cart.js"></script>
+  </body>
 
-</body>
-
-</html>
+  </html>

@@ -205,24 +205,22 @@ applyBtn.addEventListener('click', () => {
 // add to cart
 
 async function addToCart(product) {
-
     let productDetals = {
-        id:product.id,
-        name:product.name,
-        price:product.price,
+        id: product.id,
+        name: product.name,
+        price: product.price,
         quantity: 1,
-
         image: product.image,
         category: product.category,
         stock: product.stock,
         createdAt: new Date()
-    }
+    };
+
     const userId = auth.currentUser.uid; 
     const userDocRef = doc(db, 'users', userId);
     await updateDoc(userDocRef, {
-        cart:arrayUnion(productDetals)
-    })
-
+        cart: arrayUnion(productDetals)
+    });
 }
 
 // add to wishlist

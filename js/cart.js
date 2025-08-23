@@ -149,12 +149,12 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// ====================== SHOP NOW ======================
-document.addEventListener("DOMContentLoaded", () => {
-  const shopBtn = document.querySelector(".right-section button");
-  if (shopBtn) {
-    shopBtn.addEventListener("click", () => {
-      window.location.href = "orders.html"; // الصفحة اللي تروحيها
-    });
-  }
-});
+// // ====================== SHOP NOW ======================
+// document.addEventListener("DOMContentLoaded", () => {
+//   const shopBtn = document.querySelector(".right-section button");
+//   if (shopBtn) {
+//     shopBtn.addEventListener("click", () => {
+//       window.location.href = "orders.html"; // الصفحة اللي تروحيها
+//     });
+//   }
+// });
