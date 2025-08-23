@@ -48,6 +48,8 @@ addOrder.addEventListener("click", async () => {
   }
 
   const userDocRef = doc(db, "users", currentUser.uid);
+  const currentUserId = currentUser.uid ;
+  const currentUserName = currentUser.displayName ;
   const snapshot = await getDoc(userDocRef);
 
   if (!snapshot.exists()) {
@@ -57,8 +59,8 @@ addOrder.addEventListener("click", async () => {
 
   const userData = snapshot.data();
     const dataOrders = {
-    userId: currentUser,
-    userName: currentUser.displayName || "unknown",
+    userId: currentUserId,
+    userName: currentUserName || "unknown",
     price: userData.price || 0,
     email: userData.email || "no-email",
     quantity: userData.quantity || 1,

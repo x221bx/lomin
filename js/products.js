@@ -212,7 +212,7 @@ async function addToCart(product) {
         price:product.price,
         quantity: 1,
         createdAt: new Date(),
-        
+
     }
     const userId = auth.currentUser.uid; 
     const userDocRef = doc(db, 'users', userId);
