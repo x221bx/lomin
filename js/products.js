@@ -123,7 +123,8 @@ function loadProducts() {
         // object to array
         const products = Object.keys(data).map(id => ({
             id,
-            ...data[id]
+            ...data[id],
+            price: Number(data[id].price)
         }));
 
         allProducts = products;
@@ -151,7 +152,7 @@ function applyAllFilters() {
     // search
     let char = document.getElementById('search').value.toLowerCase();
     searchedProducts = filteredProducts.filter(product =>
-        product.title.toLowerCase().includes(char) ||
+        product.name.toLowerCase().includes(char) ||
         product.description.toLowerCase().includes(char) ||
         product.category.toLowerCase().includes(char)
     );
