@@ -18,6 +18,8 @@
 // ===========================================================
 
 import { handelLogout , hadelLogin , handelSignUp  ,handelGoogleSignUp ,handelGooglelogin} from "./auth.js";
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
 
 // Detect which page we are on
 const path  =window.location.pathname ; 
@@ -115,10 +117,25 @@ if (path.includes('login.html')) {
 }
 
 
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    navbarLogoutBtn.classList.add("show");
+    navbarLogoutBtn.classList.remove("hide");
+
+    navbarLoginBtn.classList.add("hide");
+    navbarLoginBtn.classList.remove("show");
+  } else {
+    navbarLoginBtn.classList.add("show");
+    navbarLoginBtn.classList.remove("hide");
+
+    navbarLogoutBtn.classList.add("hide");
+    navbarLogoutBtn.classList.remove("show");
+  }
+});
 // logout
-const logOutBtn = document.getElementById('logOut');
-if (logOutBtn) {
-    logOutBtn.addEventListener('click', async()=> {
+
+if (navbarLogoutBtn) {
+    logoutBtn.addEventListener('click', async()=> {
         try{
             await handelLogout();
             alert("Logged out successfully");
@@ -128,4 +145,6 @@ if (logOutBtn) {
         }
         })
 }
+
+console.log(loginBtn);
 
